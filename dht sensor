@@ -1,0 +1,28 @@
+#include "DHT.h"
+#define DHTPIN 3
+#define DHTTYPE DHT22
+DHT dht(DHTPIN,DHTTYPE);
+void setup() {
+  Serial.begin(9600);
+  Serial.println(F("DHTXX text!"));
+  dht.begin();  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  delay(2000);
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  float f = dht.readTemperature(true);
+  if(isnan(h)||isnan(t)||isnan(f)){
+    Serial.println(F("failed to read "));
+  }
+  Serial.print("Humidity");
+  Serial.print(h);
+  Serial.print("% Temperature");
+  Serial.print(t);
+  Serial.print("c");
+  Serial.print(f);
+  // put your main code here, to run repeatedly:
+
+}
